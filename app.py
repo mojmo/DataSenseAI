@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import base64
+from src.ai_insights import generate_insights
 
 
 def set_background_image(image_file):
@@ -25,9 +26,6 @@ set_background_image("assets/vector.png")
 st.markdown(
     """
     <style>
-        div {
-            text-align: center;
-        }
         .stTextInput > label, .stMarkdown, .stText, .stTitle, .stHeader {
             color: #f5f5f5; /* Light gray text color */
         }
@@ -38,7 +36,7 @@ st.markdown(
 
 st.markdown(
     """  
-    <div>
+    <div style="text-align: center;">
         <h1
             style='
                 background: linear-gradient(to right, #ae00ff, #d175ff, #e3a4ff);
@@ -58,11 +56,14 @@ uploaded_file = st.file_uploader("Upload your dataset", type=["csv"])
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
-    st.write("Dataset Preview")
+    st.markdown("### Dataset Preview")
     st.write(df.head())
 
-    st.write("Data Summary")
+    st.markdown("### Data Summary")
     summary = df.describe()
     st.write(summary)
 
-
+    if st.button("Generate Insights"):
+        insights = generate_insights(df)
+        st.markdown("### Insights")
+        st.write(insights)
