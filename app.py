@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import base64
 from src.ai_insights import generate_insights
+from src.visualization import plot_data
 
 
 def set_background_image(image_file):
@@ -62,6 +63,35 @@ if uploaded_file is not None:
     st.markdown("### Data Summary")
     summary = df.describe()
     st.write(summary)
+
+    st.subheader("Select Columns to Visualize")
+    columns = df.columns.tolist()
+    # selected_columns = st.multiselect("Choose columns", columns)
+    # Allow user to select x and y axes
+    x_axis = st.selectbox("Select X-axis (optional)", ["None"] + columns)
+    y_axis = st.selectbox("Select Y-axis", ["None"] + columns)
+
+    if y_axis:
+        st.write(f"### Visualize for: {y_axis}")
+
+        if x_axis == "None":
+            # Single column visualization
+            if pd.api.types.is_numeric_dtype(df[y_axis]):
+                # Numeric column: Box Plot or Violin Plot
+                plot_type = st.selectbox(f"Select plot type for {y_axis}", ["Box Plot", "Violin Plot"])
+                plot_data(df, x_axis, y_axis, plot_type)
+            elif pd.api.types.is_categorical_dtype(df[y_axis]):
+                # Categorical column: Bar Chart
+                plot_data(df, x_axis, y_axis, "Bar")
+            else:
+                st.write(f"No visualization available for column: {y_axis}")
+        else:
+            # Two-column visualization
+            if pd.api.types.is_numeric_dtype(df[x_axis]) and pd.api.types.is_numeric_dtype(df[y_axis]):
+                # Numeric columns: Scatter Plot
+                plot_data(df, x_axis, y_axis, "Scatter Plot")
+            else:
+                st.write("Both X and Y axes must be numeric for a Scatter Plot.")
 
     if st.button("Generate Insights"):
         insights = generate_insights(df)
