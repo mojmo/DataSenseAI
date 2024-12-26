@@ -69,7 +69,7 @@ if uploaded_file is not None:
     # selected_columns = st.multiselect("Choose columns", columns)
     # Allow user to select x and y axes
     x_axis = st.selectbox("Select X-axis (optional)", ["None"] + columns)
-    y_axis = st.selectbox("Select Y-axis", ["None"] + columns)
+    y_axis = st.selectbox("Select Y-axis", [None] + columns)
 
     if y_axis:
         st.write(f"### Visualize for: {y_axis}")
@@ -80,7 +80,7 @@ if uploaded_file is not None:
                 # Numeric column: Box Plot or Violin Plot
                 plot_type = st.selectbox(f"Select plot type for {y_axis}", ["Box Plot", "Violin Plot"])
                 plot_data(df, x_axis, y_axis, plot_type)
-            elif pd.api.types.is_categorical_dtype(df[y_axis]):
+            elif isinstance(df[y_axis].dtype, pd.CategoricalDtype):
                 # Categorical column: Bar Chart
                 plot_data(df, x_axis, y_axis, "Bar")
             else:
@@ -92,6 +92,9 @@ if uploaded_file is not None:
                 plot_data(df, x_axis, y_axis, "Scatter Plot")
             else:
                 st.write("Both X and Y axes must be numeric for a Scatter Plot.")
+
+    else:
+        st.warning("You have to select the Y Axis first!", icon=":material/warning:")
 
     if st.button("Generate Insights"):
         insights = generate_insights(df)
