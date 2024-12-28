@@ -64,6 +64,9 @@ if uploaded_file is not None:
     summary = df.describe()
     st.write(summary)
 
+    st.markdown("### Full Dataset")
+    st.write(df)
+
     st.subheader("Select Columns to Visualize")
     columns = df.columns.tolist()
     # selected_columns = st.multiselect("Choose columns", columns)
@@ -80,7 +83,7 @@ if uploaded_file is not None:
                 # Numeric column: Box Plot or Violin Plot
                 plot_type = st.selectbox(f"Select plot type for {y_axis}", ["Box Plot", "Violin Plot"])
                 plot_data(df, x_axis, y_axis, plot_type)
-            elif isinstance(df[y_axis].dtype, pd.CategoricalDtype):
+            elif pd.api.types.is_string_dtype(df[y_axis]):
                 # Categorical column: Bar Chart
                 plot_data(df, x_axis, y_axis, "Bar")
             else:
