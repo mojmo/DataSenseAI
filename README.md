@@ -62,13 +62,25 @@ DataSenseAI is a Streamlit-based application that leverages the **Google Gemini 
 
 ## **Screenshots**
 
-![Screenshot 1](assets/screenshots/screenshot1.png)
+![Screenshot 1](assets/screenshots/Screenshot%20(1).png)
 
-![Screenshot 2](assets/screenshots/sscreenshot2.png)
+![Screenshot 2](assets/screenshots/Screenshot%20(2).png)
 
-![Screenshot 3](assets/screenshots/sscreenshot3.png)
+![Screenshot 3](assets/screenshots/Screenshot%20(3).png)
 
-![Screenshot 4](assets/screenshots/sscreenshot4.png)
+![Screenshot 4](assets/screenshots/Screenshot%20(4).png)
+
+![Screenshot 5](assets/screenshots/Screenshot%20(5).png)
+
+![Screenshot 6](assets/screenshots/Screenshot%20(6).png)
+
+![Screenshot 7](assets/screenshots/Screenshot%20(7).png)
+
+![Screenshot 8](assets/screenshots/Screenshot%20(8).png)
+
+![Screenshot 9](assets/screenshots/Screenshot%20(9).png)
+
+![Screenshot 10](assets/screenshots/Screenshot%20(10).png)
 
 ## **Contributing**
 
