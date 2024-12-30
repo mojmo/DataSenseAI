@@ -101,5 +101,9 @@ if uploaded_file is not None:
 
     if st.button("Generate Insights"):
         insights = generate_insights(df)
-        st.markdown("### Insights")
-        st.write(insights)
+
+        if insights == "Error generating insights.":
+            st.error("Error generating insights please make sure you have a valid API key.", icon=":material/error:")
+        else:
+            st.markdown("### Insights")
+            st.write(insights)
