@@ -59,6 +59,15 @@ DataSenseAI is a Streamlit-based application that leverages the **Google Gemini 
    - Use the "Select X-axis (optional)" and "Select Y-axis" dropdowns to select the columns you want to visualize.
    - You can choose to visualize the data for a single column or two columns at once.
    - The app will display the visualization in the Insights section.
+  
+## **Demo**
+
+You can try the app by uploading a CSV file and exploring the data. Here's a demo of the app in action:
+
+
+https://github.com/user-attachments/assets/48685003-a42e-467e-9d76-5b24d221aff4
+
+
 
 ## **Screenshots**
 
